@@ -1,0 +1,44 @@
+pipeline {
+		agent any 
+		
+		environment{
+		    INSTAGRAM_GERMAN="@germanhuaytaqui"   
+		}
+		stages {  
+			stage("Saludo 1"){
+				steps {
+					echo "Hola desde Saludo 1"
+				}
+			}
+		stage("Saludo 2"){
+			steps {
+			    echo "Hola desde Saludo 2, paso 1"
+			    echo "Hola desde Saludo 2, paso 2"
+			}
+	    }
+	    stage("Imprimir variables de entorno"){
+	        steps{
+	            echo "${env.INSTAGRAM_GERMAN}"
+	            echo "${INSTAGRAM_GERMAN}"
+	            echo "$INSTAGRAM_GERMAN"
+	            echo "=========================="
+	            sh "echo 'hola-mundo'"
+	            sh "echo ${env.INSTAGRAM_GERMAN}"
+	            sh "echo ${INSTAGRAM_GERMAN}"
+	            sh "echo $INSTAGRAM_GERMAN"
+	            echo "=========================="
+	        }
+	    }
+	    stage("Definir variable de entorno definida en System"){
+	        steps{
+	            echo "${INSTAGRAM}"
+	            echo "${INSTAGRAM}"
+	            echo "$INSTAGRAM"
+	            echo "=========================="
+	            sh "echo ${env.INSTAGRAM}"
+	            sh "echo ${INSTAGRAM}"
+	            sh """echo $INSTAGRAM"""
+	        }
+	    }
+	}
+}
